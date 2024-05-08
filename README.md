@@ -6,9 +6,6 @@
 > [ASP.NET Core Documentation]:
 > https://learn.microsoft.com/en-us/aspnet/core/getting-started/?view=aspnetcore-8.0
 
-[ASP.NET Core Documentation]:
-https://learn.microsoft.com/en-us/aspnet/core/getting-started/?view=aspnetcore-8.0
-
 ## Running
 ```bash
 dotnet watch run

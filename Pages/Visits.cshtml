@@ -1,0 +1,51 @@
+@page
+@model ImobSystem.Pages.VisitModel
+@{
+    ViewData["Title"] = "Visitas";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Visitas</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Endereço</th>
+                        <th>Valor do Imóvel</th>
+                        <th>Proprietário</th>
+                        <th>Opinião</th>
+                        <th>Valor do Cliente</th>
+                        <th>[Ação] </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aqui você pode adicionar as linhas da tabela dinamicamente no futuro -->
+                    <tr>
+                        <td>01/05/2024</td>
+                        <td>Av. Major Novaes</td>
+                        <td>R$ 300.000,00</td>
+                        <td>João </td>
+                        <td>Não Gostou</td>
+                        <td>R$ 300.000,00</td>
+                        <td>[PROPOSTA] [EXCLUIR]</td>
+                    </tr>
+                    <tr>
+                        <td>01/05/2024</td>
+                        <td>rua das cabras</td>
+                        <td>R$ 1.000.000,00</td>
+                        <td>Joca</td>
+                        <td>Gostou e quer comprar</td>
+                        <td>R$ 1.500.000,00</td>
+                        <td>[PROPOSTA] [EXCLUIR]</td>
+                    </tr>
+                    <!-- Adicione mais linhas conforme necessário -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

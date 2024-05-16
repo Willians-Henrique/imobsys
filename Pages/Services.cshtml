@@ -1,0 +1,51 @@
+@page
+@model ImobSystem.Pages.ServicesModel
+@{
+    ViewData["Title"] = "Atendimentos";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Atendimentos</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Interesse</th>
+                        <th>Descrição do Imóvel</th>
+                        <th>Valor do Imóvel</th>
+                        <th>[Novo Atendimento] </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aqui você pode adicionar as linhas da tabela dinamicamente no futuro -->
+                    <tr>
+                        <td>01/05/2024</td>
+                        <td>João</td>
+                        <td>(11) 1234-5678</td>
+                        <td>Compra</td>
+                        <td>Casa com 3 quartos</td>
+                        <td>R$ 300.000,00</td>
+                        <td>[ALTERAR] [EXCLUIR]</td>
+                    </tr>
+                    <tr>
+                        <td>01/05/2024</td>
+                        <td>João</td>
+                        <td>(11) 1234-5678</td>
+                        <td>Compra</td>
+                        <td>Casa com 3 quartos </td>
+                        <td>R$ 300.000,00</td>
+                        <td>[ALTERAR] [EXCLUIR]</td>
+                    </tr>
+                    <!-- Adicione mais linhas conforme necessário -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

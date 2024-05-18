@@ -20,7 +20,7 @@
                         <th>Interesse</th>
                         <th>Descrição do Imóvel</th>
                         <th>Valor do Imóvel</th>
-                        <th>[Novo Atendimento] </th>
+                        <th><a href="#" data-bs-toggle="modal" data-bs-target="#novoAtendimentoModal">Novo Atendimento</a></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +46,50 @@
                     <!-- Adicione mais linhas conforme necessário -->
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="novoAtendimentoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Novo Atendimento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="data" class="form-label">Data:</label>
+                        <input type="date" class="form-control" id="data" name="data">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome:</label>
+                        <input type="text" class="form-control" id="nome" name="nome">
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefone" class="form-label">Telefone:</label>
+                        <input type="text" class="form-control" id="telefone" name="telefone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="interesse" class="form-label">Interesse:</label>
+                        <input type="text" class="form-control" id="interesse" name="interesse">
+                    </div>
+                    <div class="mb-3">
+                        <label for="descricaoImovel" class="form-label">Descrição do Imóvel:</label>
+                        <input type="text" class="form-control" id="descricaoImovel" name="descricaoImovel">
+                    </div>
+                    <div class="mb-3">
+                        <label for="valorImovel" class="form-label">Valor do Imóvel:</label>
+                        <input type="text" class="form-control" id="valorImovel" name="valorImovel">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
         </div>
     </div>
 </div>

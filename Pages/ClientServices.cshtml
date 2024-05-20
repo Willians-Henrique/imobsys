@@ -1,0 +1,122 @@
+@page
+@model ImobSystem.Pages.ClientServicesModel
+@{
+    ViewData["Title"] = "Atendimentos";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Atendimentos</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Interesse</th>
+                        <th>Descrição do Imóvel</th>
+                        <th>Valor do Imóvel</th>
+                        <th><a href="#" id="openNovoAtendimentoModal" data-bs-toggle="modal" data-bs-target="#novoAtendimentoModal">Novo Atendimento</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ClientServices != null)
+                    {
+                        @foreach (var service in Model.ClientServices)
+                        {
+                            <tr>
+                                <td>@service.Data.ToString("dd/MM/yyyy")</td>
+                                <td>@service.Nome</td>
+                                <td>@service.Telefone</td>
+                                <td>@service.Interesse</td>
+                                <td>@service.DescricaoImovel</td>
+                                <td>@service.ValorImovel.ToString("C2")</td>
+                                <td>[ALTERAR] [EXCLUIR]</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="novoAtendimentoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Novo Atendimento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="data" class="form-label">Data:</label>
+                        <input type="date" class="form-control" id="data" name="ClientService.Data" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome:</label>
+                        <input type="text" class="form-control" id="nome" name="ClientService.Nome" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefone" class="form-label">Telefone:</label>
+                        <input type="text" class="form-control" id="telefone" name="ClientService.Telefone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="interesse" class="form-label">Interesse:</label>
+                        <input type="text" class="form-control" id="interesse" name="ClientService.Interesse" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descricaoImovel" class="form-label">Descrição do Imóvel:</label>
+                        <input type="text" class="form-control" id="descricaoImovel" name="ClientService.DescricaoImovel" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="valorImovel" class="form-label">Valor do Imóvel:</label>
+                        <input type="text" class="form-control" id="valorImovel" name="ClientService.ValorImovel" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Novo Cliente Modal -->
+<!--div class="modal fade" id="novoClienteModal" tabindex="-1" aria-labelledby="novoClienteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="novoClienteLabel">Novo Cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-page-handler="NovoCliente">
+                    <div class="mb-3">
+                        <label for="nomeCliente" class="form-label">Nome:</label>
+                        <input type="text" class="form-control" id="nomeCliente" name="NewClient.Nome" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefoneCliente" class="form-label">Telefone:</label>
+                        <input type="text" class="form-control" id="telefoneCliente" name="NewClient.Telefone" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="fecharNovoAtendimentoModal" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div-->
+
+@section Scripts {
+    <script src="~/wwwroot/js/scripts.js"></script>
+}

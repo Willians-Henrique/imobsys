@@ -1,8 +1,16 @@
-namespace ImobSystem.Models;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-public class Client
+namespace ImobSystem.Models
 {
-    public int Id { get; set; }
-    public string? Name { get; set; }
-    public int Age { get; set; }
+    public class Client
+    {
+        [Key]
+        public int Id { get; set; }
+        public string Nome { get; set; } = string.Empty;
+            public string Telefone { get; set; } = string.Empty; 
+
+        // Relacionamento com ClientService
+        public ICollection<ClientService> ClientServices { get; set; } = new List<ClientService>();
+    }
 }

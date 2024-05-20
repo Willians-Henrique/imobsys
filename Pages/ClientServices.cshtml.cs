@@ -3,6 +3,7 @@ using ImobSystem.Data;
 using ImobSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Globalization;
 
 namespace ImobSystem.Pages
 {
@@ -26,6 +27,7 @@ namespace ImobSystem.Pages
 
         public IActionResult OnGet()
         {
+            ClientServices = _context.ClientServices.ToList(); // atualiza a lista de clientes puxando do banco de dados
             return Page();
         }
 

@@ -1,19 +1,22 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using ImobSystem.Data;
 
-namespace ImobSystem.Pages;
-
-public class IndexModel : PageModel
+namespace ImobSystem.Pages
 {
-    private readonly ILogger<IndexModel> _logger;
-
-    public IndexModel(ILogger<IndexModel> logger)
+    public class IndexModel : PageModel
     {
-        _logger = logger;
-    }
+        private readonly ApplicationDbContext _context;
 
-    public void OnGet()
-    {
+        public IndexModel(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
+        public int TotalClientServices { get; set; }
+
+        public void OnGet()
+        {
+            TotalClientServices = _context.ClientServices.Count();
+        }
     }
 }

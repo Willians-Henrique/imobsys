@@ -45,24 +45,23 @@
     </div>
 </div>
 
-
 <!-- Modal -->
 <div class="modal fade" id="novoAtendimentoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Novo Atendimento</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeNovoAtendimentoModal"></button>
             </div>
             <div class="modal-body">
                 <form method="post">
                     <div class="mb-3">
-                        <label for="data" class="form-label">Data:</label>
-                        <input type="date" class="form-control" id="data" name="ClientService.Data" required>
-                    </div>
-                    <div class="mb-3">
                         <label for="nome" class="form-label">Nome:</label>
                         <input type="text" class="form-control" id="nome" name="ClientService.Nome" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="data" class="form-label">Data:</label>
+                        <input type="date" class="form-control" id="data" name="ClientService.Data" required>
                     </div>
                     <div class="mb-3">
                         <label for="telefone" class="form-label">Telefone:</label>
@@ -78,9 +77,10 @@
                     </div>
                     <div class="mb-3">
                         <label for="valorImovel" class="form-label">Valor do Imóvel:</label>
-                        <input type="text" class="form-control" id="valorImovel" name="ClientService.ValorImovel" required>
+                        <input type="text" class="form-control" id="valorImovel" name="ClientService.ValorImovel" required oninput="formatCurrency(this)">
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
                 </form>
@@ -118,5 +118,5 @@
 </div-->
 
 @section Scripts {
-    <script src="~/wwwroot/js/scripts.js"></script>
+    
 }

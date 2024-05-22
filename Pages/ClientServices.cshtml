@@ -24,38 +24,37 @@
                     </tr>
                 </thead>
                 <tbody>
-    @if (Model.ClientServices != null)
-    {
-        @foreach (var service in Model.ClientServices)
-        {
-            if (service.Client.ClientFases.Any(cf => cf.FaseId == 1))
-            {
-                <tr>
-                    <td>@service.Data.ToString("dd/MM/yyyy")</td>
-                    <td>@service.Client.Nome</td>
-                    <td>@service.Client.Telefone</td>
-                    <td>@service.Client.Interesse</td>
-                    <td>@service.Client.DescricaoImovel</td>
-                    <td>@service.Client.ValorImovel.ToString("C2")</td>
-                    <td>[ALTERAR] [EXCLUIR]</td>
-                </tr>
-            }
-        }
-
-    }
-</tbody>
+                @if (Model.ClientServices != null)
+                {
+                    @foreach (var service in Model.ClientServices)
+                    {
+                        if (service.Client.ClientFases.Any(cf => cf.FaseId == 1))
+                        {
+                            <tr>
+                                <td>@service.Data.ToString("dd/MM/yyyy")</td>
+                                <td>@service.Client.Nome</td>
+                                <td>@service.Client.Telefone</td>
+                                <td>@service.Client.Interesse</td>
+                                <td>@service.Client.DescricaoImovel</td>
+                                <td>@service.Client.ValorImovel.ToString("C2")</td>
+                                <td>[ALTERAR] [EXCLUIR]</td>
+                            </tr>
+                        }
+                    }
+                }
+                </tbody>
             </table>
         </div>
     </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="novoAtendimentoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="novoAtendimentoModal" tabindex="-1" aria-labelledby="novoAtendimentoModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Novo Atendimento</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeNovoAtendimentoModal"></button>
+                <h5 class="modal-title" id="novoAtendimentoModalLabel">Novo Atendimento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="post">
@@ -65,8 +64,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="data" class="form-label">Data:</label>
-                        <input type="date" class="form-control" id="data" name="Client.Data" required> <!--corrigir problema de data
-
+                        <input type="date" class="form-control" id="data" name="Client.Data" required>
                     </div>
                     <div class="mb-3">
                         <label for="telefone" class="form-label">Telefone:</label>
@@ -94,34 +92,9 @@
     </div>
 </div>
 
-<!-- Novo Cliente Modal -->
-<!--div class="modal fade" id="novoClienteModal" tabindex="-1" aria-labelledby="novoClienteLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="novoClienteLabel">Novo Cliente</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post" asp-page-handler="NovoCliente">
-                    <div class="mb-3">
-                        <label for="nomeCliente" class="form-label">Nome:</label>
-                        <input type="text" class="form-control" id="nomeCliente" name="NewClient.Nome" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="telefoneCliente" class="form-label">Telefone:</label>
-                        <input type="text" class="form-control" id="telefoneCliente" name="NewClient.Telefone" required>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="fecharNovoAtendimentoModal" data-bs-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div-->
-
 @section Scripts {
-    
+    <!-- Script to handle modal functionality, if necessary -->
+    <script>
+        // Optionally, you can add custom JavaScript here if needed
+    </script>
 }

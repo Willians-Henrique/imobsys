@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ImobSystem.Models
 {
-    public class ClientService
+    public class VisitHouse
     {
         [Key] // Anote a propriedade que será a chave primária com [Key]
         public int Id { get; set; } // Adicione uma propriedade Id como chave primária
@@ -14,7 +14,11 @@ namespace ImobSystem.Models
         // Chave estrangeira
         public int ClientId { get; set; }
         [ForeignKey("ClientId")]
-        public Client Client { get; set; } 
+        public Client Client { get; set; } = new Client(); 
 
+        // Chave estrangeira
+        public int HouseId { get; set; }
+        [ForeignKey("HouseId")]
+        public House House { get; set; } 
     }
 }

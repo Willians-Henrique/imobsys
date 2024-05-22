@@ -26,21 +26,21 @@
                     <div class="col-md-3 text-center pb-4">
                         <a asp-page="/Visits">
                             <img src="~/images/visits.png" asp-append-version="true" alt="Imagem 2" style="width: 100px; height: 100px;">
-                            <h4>2</h4>
+                            <h4>@Model.ClientInVisits</h4>
                             <h3>Visita</h3>
                         </a>
                     </div>
                     <div class="col-md-3 text-center pb-4">
                         <a asp-page ="/Proposals">
                             <img src="~/images/proposals.png" asp-append-version="true" alt="Imagem 3" style="width: 100px; height: 100px;">
-                            <h4>3</h4>
+                            <h4>@Model.ClientInProposals</h4>
                             <h3>Proposta</h3>
                         </a>
                     </div>
                     <div class="col-md-3 text-center pb-4">
                         <a asp-page ="/Formalizations">
                             <img src="~/images/formalizations.png" asp-append-version="true" alt="Imagem 4" style="width: 100px; height: 100px;">
-                            <h4>4</h4>
+                            <h4>@Model.ClientInFormalizations</h4>
                             <h3>Formalização</h3>
                         </a>
                     </div>
@@ -73,7 +73,7 @@
                     <div class="col-md-2 text-center pb-4 custom-col">
                         <a href="sua_pagina_destino.html">
                             <img src="~/images/formalizations.png" asp-append-version="true" alt="Imagem 8" style="width: 50px; height: 50px;">
-                            <h4 style="font-size: 1rem;">8</h4>
+                            <h4>@Model.ClientInBusiness</h4>
                             <h3 style="font-size: 1.25rem;">Fechamentos Totais</h3>
                         </a>
                     </div>

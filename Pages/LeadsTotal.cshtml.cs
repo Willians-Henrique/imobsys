@@ -7,5 +7,7 @@ public class LeadsTotalModel : PageModel {
     public void OnGet()
     {
     }
+
+    
     
 }

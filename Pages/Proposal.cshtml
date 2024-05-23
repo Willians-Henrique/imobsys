@@ -1,11 +1,11 @@
 @page
-@model ImobSystem.Pages.VisitModel
+@model ImobSystem.Pages.ProposalModel
 @{
-    ViewData["Title"] = "Visitas";
+    ViewData["Title"] = "Propostas";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Visitas</h1>
+    <h1 class="display-4">Propostas</h1>
 </div>
 
 <div class="container">
@@ -17,20 +17,22 @@
                         <th>Data</th>
                         <th>Endereço</th>
                         <th>Valor do Imóvel</th>
-                        <th>Client</th>
-                        <th>Valor do Cliente</th>
+                        <th>Proposta Cliente</th>
+                        <th>Proprietario</th>
+                        <th>Contra-Proposta</th>
                         <th>[Ação] </th>
                     </tr> 
                 </thead>
                 <tbody>
-                    @if (Model.VisitHouses != null && Model.VisitHouses.Any())
+                    @if (Model.Proposals != null && Model.Proposals.Any())
                     {
-                        foreach (var visit in Model.VisitHouses)
+                        foreach (var visit in Model.Proposals)
                         {
                             <tr>
                                 <td>@visit.Data.ToString("dd/MM/yyyy")</td>
                                 <td>@visit.House.FullAddress</td>
                                 <td>@visit.House.ValorImovel.ToString("C2")</td>
+                                <td>@visit.Client.Nome</td>
                                 <td>@visit.Client.Nome</td>
                                 <td>@visit.Client.ValorImovel.ToString("C2")</td>
                                 <td>[ALTERAR] [EXCLUIR]</td>

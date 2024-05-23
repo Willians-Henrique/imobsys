@@ -67,6 +67,16 @@ namespace ImobSystem.Data
                 .HasOne(h => h.Owner)
                 .WithMany(o => o.Houses)
                 .HasForeignKey(h => h.OwnerId);
+
+             // Seed data for Fase
+            modelBuilder.Entity<Fase>().HasData(
+                new Fase { Id = 1, Fases = "Atendimento" },
+                new Fase { Id = 2, Fases = "Visita" },
+                new Fase { Id = 3, Fases = "Proposta" },
+                new Fase { Id = 4, Fases = "Formalizacao" },
+                new Fase { Id = 5, Fases = "Concluido" },
+                new Fase { Id = 6, Fases = "Infrutifero" }
+                );
         }
     }
 }

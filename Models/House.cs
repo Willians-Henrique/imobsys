@@ -18,6 +18,16 @@ namespace ImobSystem.Models
         public string cidade { get; set; } = string.Empty;
         public string estado { get; set; } = string.Empty;
         public decimal ValorImovel { get; set; }
+        
+        [NotMapped]
+        public string FullAddress 
+            { 
+                get 
+                { 
+                    return $"{logradouro}, {numero}, {bairro}, {cidade}, {estado}, {cep}"; 
+                } 
+            }
+
 
         // Chave estrangeira Owner
         public int OwnerId { get; set; }

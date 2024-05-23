@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-10 mx-auto">
             <table class="table table-striped">
-                <thead> 
+                <thead>
                     <tr>
                         <th>Data</th>
                         <th>Nome</th>
@@ -25,25 +25,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                @if (Model.ClientServices != null)
-                {
-                    @foreach (var service in Model.ClientServices)
+                    @if (Model.ClientServices != null)
                     {
-                        if (service.Client.ClientFases.Any(cf => cf.FaseId == 1))
+                        foreach (var service in Model.ClientServices)
                         {
-                            <tr>
-                                <td>@service.Data.ToString("dd/MM/yyyy")</td>
-                                <td>@service.Client.Nome</td>
-                                <td>@service.Client.Telefone</td>
-                                <td>@service.Client.Interesse</td>
-                                <td>@service.Client.DescricaoImovel</td>
-                                <td>@service.Client.ValorImovel.ToString("C2")</td>
-                                <td>@service.Client.Origin</td>
-                                <td>[ALTERAR] [EXCLUIR]</td>
-                            </tr>
+                            if (service.Client.ClientFases.Any(cf => cf.FaseId == 1))
+                            {
+                                <tr>
+                                    <td>@service.Data.ToString("dd/MM/yyyy")</td>
+                                    <td>@service.Client.Nome</td>
+                                    <td>@service.Client.Telefone</td>
+                                    <td>@service.Client.Interesse</td>
+                                    <td>@service.Client.DescricaoImovel</td>
+                                    <td>@service.Client.ValorImovel.ToString("C2")</td>
+                                    <td>@service.Client.Origin</td>
+                                    <td>[ALTERAR] [EXCLUIR]</td>
+                                </tr>
+                            }
                         }
                     }
-                }
                 </tbody>
             </table>
         </div>
@@ -51,12 +51,12 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="novoAtendimentoModal" tabindex="-1" aria-labelledby="novoAtendimentoModalLabel" aria-hidden="true">
+<div class="modal fade" id="novoAtendimentoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="novoAtendimentoModalLabel">Novo Atendimento</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="exampleModalLabel">Novo Atendimento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeNovoAtendimentoModal"></button>
             </div>
             <div class="modal-body">
                 <form method="post">
@@ -66,7 +66,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="data" class="form-label">Data:</label>
-                        <input type="date" class="form-control" id="data" name="Client.Data" required>
+                        <input type="date" class="form-control" id="data" name="Client.Data" required> <!--corrigir problema de data-->
                     </div>
                     <div class="mb-3">
                         <label for="telefone" class="form-label">Telefone:</label>
@@ -84,9 +84,9 @@
                         <label for="valorImovel" class="form-label">Valor do Imóvel:</label>
                         <input type="text" class="form-control" id="valorImovel" name="Client.ValorImovel" required oninput="formatCurrency(this)">
                     </div>
-                     <div class="mb-3">
+                    <div class="mb-3">
                         <label for="Origin" class="form-label">Origem:</label>
-                        <input type="text" class="form-control" id="Origin" name="Client.Origin" required>
+                        <input type="text" class="form-control" id="Irigin" name="Client.Origin" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -98,9 +98,3 @@
     </div>
 </div>
 
-@section Scripts {
-    <!-- Script to handle modal functionality, if necessary -->
-    <script>
-        // Optionally, you can add custom JavaScript here if needed
-    </script>
-}

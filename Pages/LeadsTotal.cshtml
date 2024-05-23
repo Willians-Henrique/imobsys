@@ -7,3 +7,38 @@
 <div class="text-center">
     <h1 class="display-4">Total de Leads</h1>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Interesse</th>
+                        <th>Descrição do Imóvel</th>
+                        <th>Valor do Imóvel</th>
+                        <th>Origem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Clients != null)
+                    {
+                        foreach (var client in Model.Clients)
+                        {
+                            <tr>
+                                <td>@client.Nome</td>
+                                <td>@client.Telefone</td>
+                                <td>@client.Interesse</td>
+                                <td>@client.DescricaoImovel</td>
+                                <td>@client.ValorImovel.ToString("C2")</td>
+                                <td>@client.Origin</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

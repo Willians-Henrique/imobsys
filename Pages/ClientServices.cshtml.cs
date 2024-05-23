@@ -18,7 +18,7 @@ namespace ImobSystem.Pages
 
         [BindProperty] 
         public ClientService ClientService { get; set; }
-
+        
         public List<ClientService> ClientServices { get; set; } // Lista de serviços de clientes
         public List<Client> Clients { get; set; } // Lista de clientes
         public List<ClientFase> ClientFases { get; set; } // Lista de fases de atendimento

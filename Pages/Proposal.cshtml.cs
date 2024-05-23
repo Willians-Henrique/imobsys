@@ -17,7 +17,7 @@ namespace ImobSystem.Pages
         }
 
         public List<House> Houses { get; set; } // Lista de serviços de clientes
-        public List<Owner> Owner { get; set; } // Lista de Proprietários
+        public List<Owner> Owners { get; set; } // Lista de Proprietários
         public List<Proposal> Proposals { get; set; } // Lista de Visitas
         public List<Client> Clients { get; set; } // Lista de clientes
         public List<ClientFase> ClientFases { get; set; } // Lista de fases de atendimento
@@ -27,6 +27,7 @@ namespace ImobSystem.Pages
             // Atualiza a lista de serviços de clientes puxando do banco de dados
             Houses = _context.Houses.ToList();
             Proposals = _context.Proposals.ToList();
+            Owners = _context.Owners.ToList();
             Clients = _context.Clients.ToList(); // Atualiza a lista de clientes puxando do banco de dados
             ClientFases = _context.ClientFases.ToList(); // Atualiza a lista de fases de atendimento puxando do banco de dados
             return Page();

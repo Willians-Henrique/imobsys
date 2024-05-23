@@ -1,13 +1,11 @@
 @page
-@model ImobSystem.Pages.TotalBusinessModel
+@model ImobSystem.Pages.NotBusinessModel
 @{
-    ViewData["Title"] = "TotalBusiness";
+    ViewData["Title"] = "NotBusiness";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Total de Fechamentos</h1>
-</div>
-
+    <h1 class="display-4">Total de Clientes Infrutíferos</h1>
 </div>
 <div class="container">
     <div class="row">
@@ -28,7 +26,7 @@
                     {
                         foreach (var client in Model.Clients)
                         {
-                            if (client.ClientFases.Any(cf => cf.FaseId == 5))
+                            if (client.ClientFases.Any(cf => cf.FaseId == 6))
                             {
                                 <tr>
                                     <td>@client.Nome</td>

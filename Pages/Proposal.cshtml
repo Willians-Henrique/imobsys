@@ -15,6 +15,7 @@
                 <thead>
                     <tr>
                         <th>Data</th>
+                        <th>Cliente</th>
                         <th>Endereço</th>
                         <th>Valor do Imóvel</th>
                         <th>Proposta Cliente</th>
@@ -26,15 +27,16 @@
                 <tbody>
                     @if (Model.Proposals != null && Model.Proposals.Any())
                     {
-                        foreach (var visit in Model.Proposals)
+                        foreach (var proposal in Model.Proposals)
                         {
                             <tr>
-                                <td>@visit.Data.ToString("dd/MM/yyyy")</td>
-                                <td>@visit.House.FullAddress</td>
-                                <td>@visit.House.ValorImovel.ToString("C2")</td>
-                                <td>@visit.Client.Nome</td>
-                                <td>@visit.Client.Nome</td>
-                                <td>@visit.Client.ValorImovel.ToString("C2")</td>
+                                <td>@proposal.Data.ToString("dd/MM/yyyy")</td>
+                                <td>@proposal.Client.Nome</td>
+                                <td>@proposal.House.FullAddress</td>
+                                <td>@proposal.House.ValorImovel.ToString("C2")</td>
+                                <td>@proposal.ValorProposal.ToString("C2")</td>
+                                <td>@proposal.House.Owner.Nome</td>
+                                <td>@proposal.ValorContraProposal.ToString("C2")</td>
                                 <td>[ALTERAR] [EXCLUIR]</td>
                             </tr>
                         }

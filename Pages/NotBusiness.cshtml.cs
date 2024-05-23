@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ImobSystem.Pages
 {
-    public class TotalBusinessModel : PageModel
+    public class NotBusinessModel : PageModel
     {
         private readonly ApplicationDbContext _context;
 
-        public TotalBusinessModel(ApplicationDbContext context)
+        public NotBusinessModel(ApplicationDbContext context)
         {
             _context = context;
         }

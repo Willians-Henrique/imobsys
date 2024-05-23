@@ -4,6 +4,78 @@
     ViewData["Title"] = "Clients";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Clients</h1>
+
+ 
+ <style>
+    .custom-col {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="container pb-4">
+                <div class="row">
+                    <div class="col-md-3 text-center pb-4">
+                        <a asp-page ="/ClientServices">
+                            <img src="~/images/services.png" asp-append-version="true" alt="Imagem 1" style="width: 100px; height: 100px;">
+                             <h4>@Model.ClientInServices</h4>
+                            <h3>Atendimento</h3>
+                        </a>
+                    </div>
+                    <div class="col-md-3 text-center pb-4">
+                        <a asp-page="/Visits">
+                            <img src="~/images/visits.png" asp-append-version="true" alt="Imagem 2" style="width: 100px; height: 100px;">
+                            <h4>@Model.ClientInVisits</h4>
+                            <h3>Visita</h3>
+                        </a>
+                    </div>
+                    <div class="col-md-3 text-center pb-4">
+                        <a asp-page ="/Proposal">
+                            <img src="~/images/proposals.png" asp-append-version="true" alt="Imagem 3" style="width: 100px; height: 100px;">
+                            <h4>@Model.ClientInProposals</h4>
+                            <h3>Proposta</h3>
+                        </a>
+                    </div>
+                    <div class="col-md-3 text-center pb-4">
+                        <a asp-page ="/Formalizations">
+                            <img src="~/images/formalizations.png" asp-append-version="true" alt="Imagem 4" style="width: 100px; height: 100px;">
+                            <h4>@Model.ClientInFormalizations</h4>
+                            <h3>Formalização</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mt-4">
+    <div class="row justify-content-around">
+        <div class="col-md-3 text-center pb-4 custom-col">
+            <a asp-page="/LeadsTotal">
+                <img src="~/images/leads.png" asp-append-version="true" alt="Imagem 5" class="img-fluid" style="max-width: 50px; max-height: 50px;">
+                <h4>@Model.TotalClientServices</h4>
+                <h3>Leads Totais</h3>
+            </a>
+        </div>
+        <div class="col-md-3 text-center pb-4 custom-col">
+            <a asp-page="/TotalBusiness">
+                <img src="~/images/formalizations.png" asp-append-version="true" alt="Imagem 8" class="img-fluid" style="max-width: 50px; max-height: 50px;">
+                <h4>@Model.ClientInBusiness</h4>
+                <h3>Fechamentos Totais</h3>
+            </a>
+        </div>
+        <div class="col-md-3 text-center pb-4 custom-col">
+            <a asp-page="/NotBusiness">
+                <img src="~/images/trash.png" asp-append-version="true" alt="Imagem 10" class="img-fluid" style="max-width: 50px; max-height: 50px;">
+                <h4>@Model.ClientNotBusiness</h4>
+                <h3>Leads Infrutíferos</h3>
+            </a>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
 </div>

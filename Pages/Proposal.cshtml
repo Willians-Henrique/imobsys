@@ -29,16 +29,19 @@
                     {
                         foreach (var proposal in Model.Proposals)
                         {
-                            <tr>
-                                <td>@proposal.Data.ToString("dd/MM/yyyy")</td>
-                                <td>@proposal.Client.Nome</td>
-                                <td>@proposal.House.FullAddress</td>
-                                <td>@proposal.House.ValorImovel.ToString("C2")</td>
-                                <td>@proposal.ValorProposal.ToString("C2")</td>
-                                <td>@proposal.House.Owner.Nome</td>
-                                <td>@proposal.ValorContraProposal.ToString("C2")</td>
-                                <td>[ALTERAR] [EXCLUIR]</td>
-                            </tr>
+                            if (proposal.Client.ClientFases.Any(cf => cf.FaseId == 3))
+                            {    
+                                <tr>
+                                    <td>@proposal.Data.ToString("dd/MM/yyyy")</td>
+                                    <td>@proposal.Client.Nome</td>
+                                    <td>@proposal.House.FullAddress</td>
+                                    <td>@proposal.House.ValorImovel.ToString("C2")</td>
+                                    <td>@proposal.ValorProposal.ToString("C2")</td>
+                                    <td>@proposal.House.Owner.Nome</td>
+                                    <td>@proposal.ValorContraProposal.ToString("C2")</td>
+                                    <td>[ALTERAR] [EXCLUIR]</td>
+                                </tr>
+                            }
                         }
                     }
                     else

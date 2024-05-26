@@ -8,7 +8,6 @@
     <h1 class="display-4">Total de Fechamentos</h1>
 </div>
 
-</div>
 <div class="container">
     <div class="row">
         <div class="col-md-10 mx-auto">
@@ -16,11 +15,9 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Telefone</th>
-                        <th>Interesse</th>
-                        <th>Descrição do Imóvel</th>
+                        <th>Imóvel</th>
                         <th>Valor do Imóvel</th>
-                        <th>Origem</th>
+                        <th>Data Pagamento</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,22 +26,27 @@
                         foreach (var client in Model.Clients)
                         {
                             if (client.ClientFases.Any(cf => cf.FaseId == 5))
-                            {
-                                <tr>
-                                    <td>@client.Nome</td>
-                                    <td>@client.Telefone</td>
-                                    <td>@client.Interesse</td>
-                                    <td>@client.DescricaoImovel</td>
-                                    <td>@client.ValorImovel.ToString("C2")</td>
-                                    <td>@client.Origin</td>
-                                </tr>
+                            {// Verificar se o cliente tem a fase 5 e propostas associadas
+                            
+                                foreach (var proposal in client.Proposals)
+                                {
+                                    foreach (var formalization in proposal.Formalizations)
+                                    {
+                                        <tr>
+                                            <td>@client.Nome</td>
+                                            <td>@proposal.House.FullAddress</td>
+                                            <td>@proposal.ValorContraProposal.ToString("C2")</td>
+                                            <td>@formalization.DataPagamento.ToString("dd/MM/yyyy")</td>
+                                        </tr>
+                                    }
+                                }
                             }
                         }
                     }
                     else
                     {
                         <tr>
-                            <td colspan="6">Nenhum dado de cliente infrutífero encontrado.</td>
+                            <td colspan="4">Nenhum dado de fechamento concluido encontrado.</td>
                         </tr>
                     }
                 </tbody>
@@ -52,4 +54,3 @@
         </div>
     </div>
 </div>
-

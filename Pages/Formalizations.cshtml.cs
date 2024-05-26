@@ -19,12 +19,14 @@ namespace ImobSystem.Pages
         public List<Proposal> Proposals { get; set; } // Lista de propostas
         public List<Formalization> Formalizations { get; set; } // Lista de propostas
         public List<Client> Clients { get; set; } // Lista de clientes
+        public List<ClientFase> ClientFases { get; set; }
 
         public IActionResult OnGet()
         {
             // Atualiza a lista de serviços de clientes puxando do banco de dados
             Formalizations = _context.Formalizations.ToList();
             Proposals = _context.Proposals.ToList();
+            ClientFases = _context.ClientFases.ToList();
             Clients = _context.Clients.ToList(); // Atualiza a lista de clientes puxando do banco de dados
             return Page();
         }

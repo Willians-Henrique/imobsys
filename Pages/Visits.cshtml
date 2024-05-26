@@ -27,14 +27,17 @@
                     {
                         foreach (var visit in Model.VisitHouses)
                         {
-                            <tr>
-                                <td>@visit.Data.ToString("dd/MM/yyyy")</td>
-                                <td>@visit.House.FullAddress</td>
-                                <td>@visit.House.ValorImovel.ToString("C2")</td>
-                                <td>@visit.Client.Nome</td>
-                                <td>@visit.Client.ValorImovel.ToString("C2")</td>
-                                <td>[ALTERAR] [EXCLUIR]</td>
-                            </tr>
+                            if (visit.Client.ClientFases.Any(cf => cf.FaseId == 2))
+                            {    
+                                <tr> 
+                                    <td>@visit.Data.ToString("dd/MM/yyyy")</td>
+                                    <td>@visit.House.FullAddress</td>
+                                    <td>@visit.House.ValorImovel.ToString("C2")</td>
+                                    <td>@visit.Client.Nome</td>
+                                    <td>@visit.Client.ValorImovel.ToString("C2")</td>
+                                    <td>[ALTERAR] [EXCLUIR]</td>
+                                </tr>
+                            }    
                         }
                     }
                     else

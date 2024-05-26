@@ -29,16 +29,19 @@
                     {
                         foreach (var formalization in Model.Formalizations)
                         {
-                            <tr>
-                                <td>@formalization.DataDoc.ToString("dd/MM/yyyy")</td>
-                                <td>@formalization.Proposal.Client.Nome</td>
-                                <td>@formalization.Modalidade</td>
-                                <td>@formalization.DataVistoria.ToString("dd/MM/yyyy")</td>
-                                <td>@formalization.DataContrato.ToString("dd/MM/yyyy")</td>
-                                <td>@formalization.DataEscritura.ToString("dd/MM/yyyy")</td>
-                                <td>@formalization.DataPagamento.ToString("dd/MM/yyyy")</td>
-                                <td>[ALTERAR] [EXCLUIR]</td>
-                            </tr>
+                            if (formalization.Proposal.Client.ClientFases.Any(cf => cf.FaseId == 4))
+                            {
+                                <tr>
+                                    <td>@formalization.DataDoc.ToString("dd/MM/yyyy")</td>
+                                    <td>@formalization.Proposal.Client.Nome</td>
+                                    <td>@formalization.Modalidade</td>
+                                    <td>@formalization.DataVistoria.ToString("dd/MM/yyyy")</td>
+                                    <td>@formalization.DataContrato.ToString("dd/MM/yyyy")</td>
+                                    <td>@formalization.DataEscritura.ToString("dd/MM/yyyy")</td>
+                                    <td>@formalization.DataPagamento.ToString("dd/MM/yyyy")</td>
+                                    <td>[ALTERAR] [EXCLUIR]</td>
+                                </tr>
+                            }
                         }
                     }
                     else

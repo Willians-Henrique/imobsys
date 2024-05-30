@@ -14,7 +14,7 @@ namespace ImobSystem.Models
         // Chave estrangeira
         public int ClientId { get; set; }
         [ForeignKey("ClientId")]
-        public Client Client { get; set; } = new Client(); 
+        public Client Client { get; set; } 
 
         // Chave estrangeira
         public int HouseId { get; set; }

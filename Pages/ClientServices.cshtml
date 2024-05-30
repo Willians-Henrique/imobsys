@@ -39,7 +39,12 @@
                                     <td>@service.Client.DescricaoImovel</td>
                                     <td>@service.Client.ValorImovel.ToString("C2")</td>
                                     <td>@service.Client.Origin</td>
-                                    <td>[ALTERAR] [EXCLUIR]</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#visitaModal-@service.Client.Id">VISITA</button>
+                                        <form method="post" asp-page-handler="Delete" asp-route-id="@service.Client.Id">
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm ('Tem certeza que deseja encerar esse atendimento ?')">EXCLUIR</button>
+                                        </form> 
+                                    </td>
                                 </tr>
                             }
                         }
@@ -50,7 +55,8 @@
     </div>
 </div>
 
-<!-- Modal -->
+
+<!-- Modal de novo atendimento -->
 <div class="modal fade" id="novoAtendimentoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -66,7 +72,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="data" class="form-label">Data:</label>
-                        <input type="date" class="form-control" id="data" name="Client.Data" required> <!--corrigir problema de data-->
+                        <input type="date" class="form-control" id="data" name="Client.Data" required> 
                     </div>
                     <div class="mb-3">
                         <label for="telefone" class="form-label">Telefone:</label>
@@ -96,5 +102,44 @@
             </div>
         </div>
     </div>
-</div>
-
+</div> 
+<!-- Modais para visitas -->
+@foreach (var service in Model.ClientServices)
+{
+    if (service.Client.ClientFases.Any(cf => cf.FaseId == 1))
+    {
+        <div class="modal fade" id="visitaModal-@service.Client.Id" tabindex="-1" aria-labelledby="visitaModalLabel-@service.Client.Id" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="visitaModalLabel-@service.Client.Id">Registrar Visita</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" asp-page-handler="RegisterVisit">
+                            <input type="hidden" name="ClientId" value="@service.Client.Id" />
+                            <div class="mb-3">
+                                <label for="dataVisita-@service.Client.Id" class="form-label">Data da Visita:</label>
+                                <input type="date" class="form-control" id="dataVisita-@service.Client.Id" name="DataVisita" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="houseId-@service.Client.Id" class="form-label">Imóvel:</label>
+                                <select class="form-select" id="houseId-@service.Client.Id" name="HouseId" required>
+                                    <option value="">Selecione um imóvel</option>
+                                    @foreach (var house in Model.Houses)
+                                    {
+                                        <option value="@house.Id">@house.FullAddress</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                <button type="submit" class="btn btn-primary">Registrar Visita</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

@@ -18,44 +18,92 @@ namespace ImobSystem.Pages
 
         [BindProperty] 
         public ClientService ClientService { get; set; }
-        
         public List<ClientService> ClientServices { get; set; } // Lista de serviços de clientes
         public List<Client> Clients { get; set; } // Lista de clientes
-        public List<ClientFase> ClientFases { get; set; } // Lista de fases de atendimento
+        public List<ClientFase> ClientFases { get; set; } // Lista de fases de atendimento 
+        public List<House> Houses { get; set; }
 
         public IActionResult OnGet()
         {
             // Atualiza a lista de serviços de clientes puxando do banco de dados
             ClientServices = _context.ClientServices.ToList();
+            Houses = _context.Houses.ToList();
             Clients = _context.Clients.ToList(); // Atualiza a lista de clientes puxando do banco de dados
             ClientFases = _context.ClientFases.ToList(); // Atualiza a lista de fases de atendimento puxando do banco de dados
             return Page();
         }
 
-    public IActionResult OnPost()
-{
-    if (!ModelState.IsValid)
-    {
-        return Page();
-    }
+        public IActionResult OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
-    // Adiciona o serviço do cliente ao contexto do banco de dados
-    _context.ClientServices.Add(ClientService);
-    _context.SaveChanges();
+            // Adiciona o serviço do cliente ao contexto do banco de dados
+            _context.ClientServices.Add(ClientService);
+            _context.SaveChanges();
+        
+            // Cria um novo registro em ClientFase para o cliente e a fase de atendimento
+            var clientFase = new ClientFase
+            {
+                ClientId = ClientService.ClientId, // Define o Id do cliente
+                FaseId = 1 // Define o Id da fase de atendimento (assumindo que 1 é o Id da fase de atendimento)
+            };
 
-    // Cria um novo registro em ClientFase para o cliente e a fase de atendimento
-    var clientFase = new ClientFase
-    {
-        ClientId = ClientService.ClientId, // Define o Id do cliente
-        FaseId = 1 // Define o Id da fase de atendimento (assumindo que 1 é o Id da fase de atendimento)
-    };
+            _context.ClientFases.Add(clientFase); // Adiciona o novo registro ao contexto
+            _context.SaveChanges(); // Salva as alterações
 
-    _context.ClientFases.Add(clientFase); // Adiciona o novo registro ao contexto
-    _context.SaveChanges(); // Salva as alterações
+            // Redireciona para a página de ClientServices
+            return RedirectToPage("./ClientServices");
+        }
 
-    // Redireciona para a página de ClientServices
-    return RedirectToPage("./ClientServices");
-}
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult OnPostDelete(int id)
+        {
+            // Busca o serviço do cliente pelo Id
+            var clientFase = _context.ClientFases.FirstOrDefault(cf => cf.ClientId == id && cf.FaseId == 1);
+            if (clientFase != null)
+            {
+                clientFase.FaseId = 6; // Define o Id da fase de at
+                _context.SaveChanges(); // Salva as alterações
+                return RedirectToPage("./ClientServices");
+            }
+            else{
+                return new NotFoundResult();
+            }
+        }
+        
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult OnPostRegisterVisit(int ClientId, DateTime DataVisita, int HouseId)
+        {
+            // Busca a fase do cliente pelo ClientId e FaseId
+            var clientFase = _context.ClientFases.FirstOrDefault(cf => cf.ClientId == ClientId && cf.FaseId == 1);
 
+            if (clientFase != null)
+            {
+                // Cria um novo registro de visita
+                var visit = new VisitHouse
+                {
+                    ClientId = ClientId,
+                    HouseId = HouseId,
+                    Data = DataVisita
+                };
+
+                _context.VisitHouses.Add(visit);
+
+                // Atualiza a fase do cliente para "Visita"
+                clientFase.FaseId = 2;
+                _context.SaveChanges(); // Salva as alterações
+
+                return RedirectToPage("./ClientServices");
+            }
+            else
+            {
+                return new NotFoundResult();
+            }
+        }
     }
 }

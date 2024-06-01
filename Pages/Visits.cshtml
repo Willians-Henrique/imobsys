@@ -35,7 +35,10 @@
                                     <td>@visit.House.ValorImovel.ToString("C2")</td>
                                     <td>@visit.Client.Nome</td>
                                     <td>@visit.Client.ValorImovel.ToString("C2")</td>
-                                    <td>[ALTERAR] [EXCLUIR]</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#novaPropostaModal-@visit.Client.Id">Adicionar Proposta</button>
+                                    </td>
+
                                 </tr>
                             }    
                         }
@@ -51,3 +54,38 @@
         </div>
     </div>
 </div>
+
+@foreach (var visit in Model.VisitHouses)
+{
+    <!-- Modal de nova proposta -->
+    <div class="modal fade" id="novaPropostaModal-@visit.Client.Id" tabindex="-1" aria-labelledby="novaPropostaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="novaPropostaModalLabel">Nova Proposta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-page-handler="AdicionarProposta" asp-route-clientId="@visit.Client.Id" asp-route-houseId="@visit.House.Id">
+                        <div class="mb-3">
+                            <label for="dataProposta" class="form-label">Data da Proposta:</label>
+                            <input type="date" class="form-control" id="dataProposta" name="DataProposta" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="valorProposta" class="form-label">Valor da Proposta:</label>
+                            <input type="text" class="form-control" id="valorProposta" name="ValorProposta" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="valorContraProposta" class="form-label">Contra-Proposta:</label>
+                            <input type="text" class="form-control" id="valorContraProposta" name="ValorContraProposta" step="0.01" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}

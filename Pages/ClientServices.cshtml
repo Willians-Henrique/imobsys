@@ -104,42 +104,71 @@
     </div>
 </div> 
 <!-- Modais para visitas -->
+
 @foreach (var service in Model.ClientServices)
 {
-    if (service.Client.ClientFases.Any(cf => cf.FaseId == 1))
-    {
-        <div class="modal fade" id="visitaModal-@service.Client.Id" tabindex="-1" aria-labelledby="visitaModalLabel-@service.Client.Id" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="visitaModalLabel-@service.Client.Id">Registrar Visita</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" asp-page-handler="RegisterVisit">
-                            <input type="hidden" name="ClientId" value="@service.Client.Id" />
-                            <div class="mb-3">
-                                <label for="dataVisita-@service.Client.Id" class="form-label">Data da Visita:</label>
-                                <input type="date" class="form-control" id="dataVisita-@service.Client.Id" name="DataVisita" required>
+    <div class="modal fade" id="visitaModal-@service.Client.Id" tabindex="-1" aria-labelledby="visitaModalLabel-@service.Client.Id" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="visitaModalLabel-@service.Client.Id">Adicionar Nova Visita</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-page-handler="NovaVisita">
+                        <input type="hidden" name="ClientId" value="@service.Client.Id" />
+                        <div id="visitFormContainer-@service.Client.Id">
+                            <div class="visit-form">
+                                <div class="mb-3">
+                                    <label for="dataVisita-@service.Client.Id" class="form-label">Data da Visita:</label>
+                                    <input type="date" class="form-control" id="dataVisita-@service.Client.Id" name="VisitHouses[0].Data" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="houseId-@service.Client.Id" class="form-label">Imóvel:</label>
+                                    <select class="form-select" id="houseId-@service.Client.Id" name="VisitHouses[0].HouseId" required>
+                                        <option value="">Selecione um imóvel</option>
+                                        @foreach (var house in Model.Houses)
+                                        {
+                                            <option value="@house.Id">@house.FullAddress</option>
+                                        }
+                                    </select>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="houseId-@service.Client.Id" class="form-label">Imóvel:</label>
-                                <select class="form-select" id="houseId-@service.Client.Id" name="HouseId" required>
-                                    <option value="">Selecione um imóvel</option>
-                                    @foreach (var house in Model.Houses)
-                                    {
-                                        <option value="@house.Id">@house.FullAddress</option>
-                                    }
-                                </select>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                <button type="submit" class="btn btn-primary">Registrar Visita</button>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Salvar Visitas</button>
+                            <button type="button" class="btn btn-success" onclick="addVisitForm(@service.Client.Id)">Adicionar Outra Visita</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    }
+    </div>
 }
+
+<script>
+    function addVisitForm(clientId) {
+        const container = document.getElementById('visitFormContainer-' + clientId);
+        const index = container.children.length;
+        const newForm = document.createElement('div');
+        newForm.className = 'visit-form';
+        newForm.innerHTML = `
+            <div class="mb-3">
+                <label for="dataVisita-${clientId}-${index}" class="form-label">Data da Visita:</label>
+                <input type="date" class="form-control" id="dataVisita-${clientId}-${index}" name="VisitHouses[${index}].Data" required>
+            </div>
+            <div class="mb-3">
+                <label for="houseId-${clientId}-${index}" class="form-label">Imóvel:</label>
+                <select class="form-select" id="houseId-${clientId}-${index}" name="VisitHouses[${index}].HouseId" required>
+                    <option value="">Selecione um imóvel</option>
+                    @foreach (var house in Model.Houses)
+                    {
+                        <option value="@house.Id">@house.FullAddress</option>
+                    }
+                </select>
+            </div>
+        `;
+        container.appendChild(newForm);
+    }
+</script>

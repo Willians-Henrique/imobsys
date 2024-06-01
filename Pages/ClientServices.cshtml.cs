@@ -18,6 +18,7 @@ namespace ImobSystem.Pages
 
         [BindProperty] 
         public ClientService ClientService { get; set; }
+        
         public List<ClientService> ClientServices { get; set; } // Lista de serviços de clientes
         public List<Client> Clients { get; set; } // Lista de clientes
         public List<ClientFase> ClientFases { get; set; } // Lista de fases de atendimento 
@@ -77,33 +78,22 @@ namespace ImobSystem.Pages
         
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public IActionResult OnPostRegisterVisit(int ClientId, DateTime DataVisita, int HouseId)
+        public IActionResult OnPostNovaVisita(int clientId, List<VisitHouse> visitHouses)
         {
-            // Busca a fase do cliente pelo ClientId e FaseId
-            var clientFase = _context.ClientFases.FirstOrDefault(cf => cf.ClientId == ClientId && cf.FaseId == 1);
+            foreach (var visitHouse in visitHouses)
+            {
+                visitHouse.ClientId = clientId;
+                _context.VisitHouses.Add(visitHouse);
+            }
 
+            var clientFase = _context.ClientFases.FirstOrDefault(cf => cf.ClientId == clientId);
             if (clientFase != null)
             {
-                // Cria um novo registro de visita
-                var visit = new VisitHouse
-                {
-                    ClientId = ClientId,
-                    HouseId = HouseId,
-                    Data = DataVisita
-                };
-
-                _context.VisitHouses.Add(visit);
-
-                // Atualiza a fase do cliente para "Visita"
                 clientFase.FaseId = 2;
-                _context.SaveChanges(); // Salva as alterações
+            }
 
-                return RedirectToPage("./ClientServices");
-            }
-            else
-            {
-                return new NotFoundResult();
-            }
+            _context.SaveChanges();
+            return RedirectToPage("./ClientServices");
         }
     }
 }

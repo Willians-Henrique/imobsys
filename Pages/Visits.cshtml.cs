@@ -32,5 +32,38 @@ namespace ImobSystem.Pages
             return Page();
         }
 
+
+        public async Task<IActionResult> OnPostAdicionarPropostaAsync(int clientId, int houseId, DateTime dataProposta, decimal valorProposta, decimal valorContraProposta)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            // Crie uma nova instância de Proposal
+            var newProposal = new Proposal
+            {
+                ClientId = clientId,
+                HouseId = houseId,
+                Data = dataProposta,
+                ValorProposal = valorProposta,
+                ValorContraProposal = valorContraProposta
+            };
+
+            // Adicione a nova proposta ao contexto do banco de dados
+            _context.Proposals.Add(newProposal);
+
+            var clientFase = _context.ClientFases.FirstOrDefault(cf => cf.ClientId == clientId);
+            if (clientFase != null)
+            {
+                clientFase.FaseId = 3;
+            }
+
+            // Salve as mudanças no banco de dados
+            await _context.SaveChangesAsync();
+
+            // Redirecione de volta à página de Visitas
+            return RedirectToPage("./Visits");
+        }
     }
 }

@@ -50,31 +50,36 @@
             </div>
 
             <div class="container mt-4">
-    <div class="row justify-content-around">
-        <div class="col-md-3 text-center pb-4 custom-col">
-            <a asp-page="/LeadsTotal">
-                <img src="~/images/leads.png" asp-append-version="true" alt="Imagem 5" class="img-fluid" style="max-width: 50px; max-height: 50px;">
-                <h4>@Model.TotalClientServices</h4>
-                <h3>Leads Totais</h3>
-            </a>
-        </div>
-        <div class="col-md-3 text-center pb-4 custom-col">
-            <a asp-page="/TotalBusiness">
-                <img src="~/images/formalizations.png" asp-append-version="true" alt="Imagem 8" class="img-fluid" style="max-width: 50px; max-height: 50px;">
-                <h4>@Model.ClientInBusiness</h4>
-                <h3>Fechamentos Totais</h3>
-            </a>
-        </div>
-        <div class="col-md-3 text-center pb-4 custom-col">
-            <a asp-page="/NotBusiness">
-                <img src="~/images/trash.png" asp-append-version="true" alt="Imagem 10" class="img-fluid" style="max-width: 50px; max-height: 50px;">
-                <h4>@Model.ClientNotBusiness</h4>
-                <h3>Leads Infrutíferos</h3>
-            </a>
-        </div>
-    </div>
-</div>
-
+                <div class="row justify-content-around">
+                    <div class="col-md-3 text-center pb-4 custom-col">
+                        <a asp-page="/AddHouses">
+                            <img src="~/images/houses.png" asp-append-version="true" alt="Imagem 5" class="img-fluid" style="max-width: 50px; max-height: 50px;">
+                            <h4>@Model.TotalHouses</h4>
+                            <h3>Casas</h3>
+                        </a>
+                    </div>
+                    <div class="col-md-3 text-center pb-4 custom-col">    
+                        <a asp-page="/LeadsTotal">
+                            <img src="~/images/leads.png" asp-append-version="true" alt="Imagem 5" class="img-fluid" style="max-width: 50px; max-height: 50px;">
+                            <h4>@Model.TotalClientServices</h4>
+                            <h3>Leads Totais</h3>
+                        </a>
+                    </div>
+                    <div class="col-md-3 text-center pb-4 custom-col">
+                        <a asp-page="/TotalBusiness">
+                            <img src="~/images/formalizations.png" asp-append-version="true" alt="Imagem 8" class="img-fluid" style="max-width: 50px; max-height: 50px;">
+                            <h4>@Model.ClientInBusiness</h4>
+                            <h3>Fechamentos Totais</h3>
+                        </a>
+                    </div>
+                    <div class="col-md-3 text-center pb-4 custom-col">
+                        <a asp-page="/NotBusiness">
+                            <img src="~/images/trash.png" asp-append-version="true" alt="Imagem 10" class="img-fluid" style="max-width: 50px; max-height: 50px;">
+                            <h4>@Model.ClientNotBusiness</h4>
+                            <h3>Leads Infrutíferos</h3>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

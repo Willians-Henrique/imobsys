@@ -65,5 +65,21 @@ namespace ImobSystem.Pages
             // Redirecione de volta à página de Visitas
             return RedirectToPage("./Visits");
         }
+
+        public IActionResult OnPostDeleteVisit(int Id)
+        {
+            // Busca o serviço do cliente pelo Id
+            var clientFase = _context.ClientFases.FirstOrDefault(cf => cf.ClientId == Id && cf.FaseId == 2);
+            if (clientFase != null)
+            {
+                clientFase.FaseId = 6; // Define o Id da fase de at
+                _context.SaveChanges(); // Salva as alterações
+                return RedirectToPage("./Visits");
+            }
+            else{
+                return new NotFoundResult();
+            }
+        }
+        
     }
 }

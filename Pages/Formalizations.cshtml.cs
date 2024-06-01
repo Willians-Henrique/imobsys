@@ -31,5 +31,34 @@ namespace ImobSystem.Pages
             return Page();
         }
 
+        public IActionResult OnPostDeleteFormalization(int Id)
+        {
+            // Busca o serviço do cliente pelo Id
+            var clientFase = _context.ClientFases.FirstOrDefault(cf => cf.ClientId == Id && cf.FaseId == 4);
+            if (clientFase != null)
+            {
+                clientFase.FaseId = 6; // Define o Id da fase de at
+                _context.SaveChanges(); // Salva as alterações
+                return RedirectToPage("./Formalizations");
+            }
+            else{
+                return new NotFoundResult();
+            }
+        }
+        public IActionResult OnPostAceitarFormalization(int Id)
+        {
+            // Busca o serviço do cliente pelo Id
+            var clientFase = _context.ClientFases.FirstOrDefault(cf => cf.ClientId == Id && cf.FaseId == 4);
+            if (clientFase != null)
+            {
+                clientFase.FaseId = 5; // Define o Id da fase de at
+                _context.SaveChanges(); // Salva as alterações
+                return RedirectToPage("./Formalizations");
+            }
+            else{
+                return new NotFoundResult();
+            }
+        }
+
     }
 }

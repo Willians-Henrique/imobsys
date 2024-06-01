@@ -16,9 +16,9 @@
                     <tr>
                         <th>Data Documentacação</th>
                         <th>Cliente</th>
-                        <th>A Vista ou Financiamento</th> 
+                        <th>Modalidade</th> 
                         <th>Data Vistoria</th>
-                        <th>Data Constrato bancário</th>
+                        <th>Data Contrato </th>
                         <th>Data Escritura</th>
                         <th>Data Pagamento</th>
                         <th>[Ação] </th>
@@ -39,7 +39,14 @@
                                     <td>@formalization.DataContrato.ToString("dd/MM/yyyy")</td>
                                     <td>@formalization.DataEscritura.ToString("dd/MM/yyyy")</td>
                                     <td>@formalization.DataPagamento.ToString("dd/MM/yyyy")</td>
-                                    <td>[ALTERAR] [EXCLUIR]</td>
+                                    <td>
+                                        <form method="post" asp-page-handler="AceitarFormalization" asp-route-id="@formalization.Proposal.Client.Id" onsubmit="return confirm('PARABÉNS, você concluiu essa negociação')">
+                                            <button type="submit" class="btn btn-primary">ACEITAR</button>
+                                        </form>
+                                        <form method="post" asp-page-handler="DeleteFormalization" asp-route-id="@formalization.Proposal.Client.Id" onsubmit="return confirm('Tem certeza que deseja encerrar este atendimento?')">
+                                            <button type="submit" class="btn btn-danger">EXCLUIR</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             }
                         }

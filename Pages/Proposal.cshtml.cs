@@ -33,5 +33,56 @@ namespace ImobSystem.Pages
             return Page();
         }
 
+        public async Task<IActionResult> OnPostAdicionarFormalizacaoAsync(int clientId, int proposalId, DateTime dataDocumentacao, string Modalidade, DateTime dataVistoria, DateTime dataContrato, DateTime dataEscritura, DateTime dataPagamento)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            // Crie uma nova instância de Proposal
+            var newFormalization = new Formalization
+            {
+                ProposalId = proposalId,
+                DataDoc = dataDocumentacao,
+                Modalidade = Modalidade,
+                DataVistoria = dataVistoria,
+                DataContrato = dataContrato,
+                DataEscritura= dataEscritura,
+                DataPagamento = dataPagamento
+            };
+
+            // Adicione a nova formalizacao ao contexto do banco de dados
+            _context.Formalizations.Add(newFormalization);
+
+            var clientFase = _context.ClientFases.FirstOrDefault(cf => cf.ClientId == clientId);
+            if (clientFase != null)
+            {
+                clientFase.FaseId = 4;
+            }
+
+            // Salve as mudanças no banco de dados
+            await _context.SaveChangesAsync();
+
+            // Redirecione de volta à página de Visitas
+            return RedirectToPage("./Proposal");
+        }
+
+
+        public IActionResult OnPostDeleteProposal(int Id)
+        {
+            // Busca o serviço do cliente pelo Id
+            var clientFase = _context.ClientFases.FirstOrDefault(cf => cf.ClientId == Id && cf.FaseId == 3);
+            if (clientFase != null)
+            {
+                clientFase.FaseId = 6; // Define o Id da fase de at
+                _context.SaveChanges(); // Salva as alterações
+                return RedirectToPage("./Visits");
+            }
+            else{
+                return new NotFoundResult();
+            }
+        }
+
     }
 }

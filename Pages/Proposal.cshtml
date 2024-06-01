@@ -39,7 +39,12 @@
                                     <td>@proposal.ValorProposal.ToString("C2")</td>
                                     <td>@proposal.House.Owner.Nome</td>
                                     <td>@proposal.ValorContraProposal.ToString("C2")</td>
-                                    <td>[ALTERAR] [EXCLUIR]</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#novaFormalizacaoModal-@proposal.Client.Id">Aceitar</button>
+                                        <form method="post" asp-page-handler="DeleteProposal" asp-route-id="@proposal.Client.Id" onsubmit="return confirm('Tem certeza que deseja encerrar este atendimento?')">
+                                            <button type="submit" class="btn btn-danger">EXCLUIR</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             }
                         }
@@ -55,3 +60,50 @@
         </div>
     </div>
 </div>
+
+@foreach (var proposal in Model.Proposals)
+{
+    <!-- Modal de nova formalizacao -->
+    <div class="modal fade" id="novaFormalizacaoModal-@proposal.Client.Id" tabindex="-1" aria-labelledby="novaFormalizacaoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="novaFormalizacaoModalLabel">Nova Formalização</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-page-handler="AdicionarFormalizacao" asp-route-clientId="@proposal.Client.Id" asp-route-proposalId="@proposal.Id">
+                        <div class="mb-3">
+                            <label for="dataDocumentacao" class="form-label">Data da Documentação:</label>
+                            <input type="date" class="form-control" id="dataDocumentacao" name="dataDocumentacao" required>
+                        </div>
+                        <div class="mb-3">
+                        <label for="Modalidade" class="form-label">Modalidade:</label>
+                        <input type="text" class="form-control" id="Modalidade" name="Modalidade" required>
+                    </div>
+                        <div class="mb-3">
+                            <label for="dataVistoria" class="form-label">Data da Vistoria:</label>
+                            <input type="date" class="form-control" id="dataVistoria" name="dataVistoria" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dataContrato" class="form-label">Data do Contrato:</label>
+                            <input type="date" class="form-control" id="dataContrato" name="dataContrato" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dataEscritura" class="form-label">Data da Escritura:</label>
+                            <input type="date" class="form-control" id="dataEscritura" name="dataEscritura" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dataPagamento" class="form-label">Data do Pagamento:</label>
+                            <input type="date" class="form-control" id="dataPagamento" name="dataPagamento" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -12,5 +12,9 @@ namespace ImobSystem.Models
         public string Telefone { get; set; } = string.Empty;  
         // Relacionamento com House
         public ICollection<House> Houses { get; set; } = new List<House>();
+
+        // Propriedade para armazenar o total de casas
+        [NotMapped]
+        public int TotalHouses { get; set; }
     }
 }

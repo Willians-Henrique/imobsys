@@ -1,0 +1,128 @@
+@page
+@model ImobSystem.Pages.OwnersModel
+@{
+    ViewData["Title"] = "Owners";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Proprietários</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Casas </th>
+                        <th><a href="#" id="opennovoProprietarioModal" data-bs-toggle="modal" data-bs-target="#novoProprietarioModal">Novo Proprietário</a></th>
+                    </tr> 
+                </thead>
+                <tbody>
+                    @if (Model.Owners != null && Model.Owners.Any())
+                    {
+                        foreach (var owner in Model.Owners)
+                        {   
+                            <tr> 
+                                <td>@owner.Nome</td>
+                                <td>@owner.Telefone</td>
+                                <td>@owner.TotalHouses</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#novaCasaModal-@owner.Id">AddCasa</button>
+                                    <form method="post" asp-page-handler="DeleteOwner" asp-route-id="@owner.Id" onsubmit="return confirm('Tem certeza que deseja excluir esse Proprietário ?')">
+                                        <button type="submit" class="btn btn-danger">EXCLUIR</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }    
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@foreach (var owner in Model.Owners)
+{
+    <!-- Modal de nova proposta -->
+    <div class="modal fade" id="novaCasaModal-@owner.Id" tabindex="-1" aria-labelledby="novaCasaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="novaCasaModalLabel">Adicionar Casa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-page-handler="AdicionarCasa" asp-route-ownerId="@owner.Id">
+                    <div class="mb-3">
+                        <label for="cep" class="form-label">CEP:</label>
+                        <input type="text" class="form-control" id="cep" name="cep" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="logradouro" class="form-label">Logradouro:</label>
+                        <input type="text" class="form-control" id="logradouro" name="logradouro" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="numero" class="form-label">Número:</label>
+                        <input type="text" class="form-control" id="numero" name="numero" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="complemento" class="form-label">Complemento:</label>
+                        <input type="text" class="form-control" id="complemento" name="complemento">
+                    </div>
+                    <div class="mb-3">
+                        <label for="bairro" class="form-label">Bairro:</label>
+                        <input type="text" class="form-control" id="bairro" name="bairro" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cidade" class="form-label">Cidade:</label>
+                        <input type="text" class="form-control" id="cidade" name="cidade" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="estado" class="form-label">Estado:</label>
+                        <input type="text" class="form-control" id="estado" name="estado" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="valorImovel" class="form-label">Valor do Imóvel:</label>
+                        <input type="text" class="form-control" id="valorImovel" name="valorImovel" required>
+                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Modal de novo proprietário -->
+<div class="modal fade" id="novoProprietarioModal" tabindex="-1" aria-labelledby="novoProprietarioModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="novoProprietarioModalLabel">Adicionar Novo Proprietário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-page-handler="NovoProprietario">
+                    <div class="mb-3">
+                        <label for="nomeProprietario" class="form-label">Nome do Proprietário:</label>
+                        <input type="text" class="form-control" id="nomeProprietario" name="nomeProprietario" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefoneProprietario" class="form-label">Telefone do Proprietário:</label>
+                        <input type="text" class="form-control" id="telefoneProprietario" name="telefoneProprietario" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

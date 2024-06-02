@@ -10,13 +10,13 @@ namespace ImobSystem.Models
     {
         [Key]
         public int Id { get; set; }
-        public string cep { get; set; } = string.Empty;
-        public string logradouro { get; set; } = string.Empty;
-        public string numero { get; set; } = string.Empty;
-        public string complemento { get; set; } = string.Empty;
-        public string bairro { get; set; } = string.Empty;
-        public string cidade { get; set; } = string.Empty;
-        public string estado { get; set; } = string.Empty;
+        public string cep { get; set; } 
+        public string logradouro { get; set; } 
+        public string numero { get; set; }
+        public string complemento { get; set; } 
+        public string bairro { get; set; } 
+        public string cidade { get; set; } 
+        public string estado { get; set; } 
         public decimal ValorImovel { get; set; }
         
         [NotMapped]

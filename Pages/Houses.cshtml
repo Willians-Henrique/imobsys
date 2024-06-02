@@ -1,0 +1,57 @@
+@page
+@model ImobSystem.Pages.HousesModel
+@{
+    ViewData["Title"] = "Houses";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Casas</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>CEP</th>
+                        <th>Logradouro</th>
+                        <th>Número</th>
+                        <th>Complemento</th>
+                        <th>Bairro</th>
+                        <th>Cidade</th>
+                        <th>Estado</th>
+                        <th>Valor</th>
+                        <th>Proprietário</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Houses != null)
+                    {
+                        foreach (var house in Model.Houses)
+                        {
+                            <tr>
+                                <td>@house.cep</td>
+                                <td>@house.logradouro</td>
+                                <td>@house.numero</td>
+                                <td>@house.complemento</td>
+                                <td>@house.bairro</td>
+                                <td>@house.cidade</td>
+                                <td>@house.estado</td>
+                                <td>@house.ValorImovel.ToString("C2")</td>
+                                <td>@house.Owner.Nome</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="11">Nenhum dado de casa encontrado.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

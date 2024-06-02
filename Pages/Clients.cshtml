@@ -52,7 +52,14 @@
             <div class="container mt-4">
                 <div class="row justify-content-around">
                     <div class="col-md-3 text-center pb-4 custom-col">
-                        <a asp-page="/AddHouses">
+                        <a asp-page="/Owners">
+                            <img src="~/images/houses.png" asp-append-version="true" alt="Imagem 5" class="img-fluid" style="max-width: 50px; max-height: 50px;">
+                            <h4>@Model.TotalOwners</h4>
+                            <h3>Proprietários</h3>
+                        </a>
+                    </div>
+                    <div class="col-md-3 text-center pb-4 custom-col">
+                        <a asp-page="/Houses">
                             <img src="~/images/houses.png" asp-append-version="true" alt="Imagem 5" class="img-fluid" style="max-width: 50px; max-height: 50px;">
                             <h4>@Model.TotalHouses</h4>
                             <h3>Casas</h3>

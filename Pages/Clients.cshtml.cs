@@ -23,6 +23,7 @@ public class ClientModel : PageModel
         public int ClientInBusiness { get; set; }
         public int ClientNotBusiness { get; set; }
         public int TotalHouses { get; set; }
+        public int TotalOwners { get; set; }
 
 
 
@@ -30,6 +31,7 @@ public class ClientModel : PageModel
         {
             TotalClientServices = _context.ClientServices.Count();
             TotalHouses = _context.Houses.Count();
+            TotalOwners = _context.Owners.Count();
             ClientInServices = _context.ClientFases.Count(cf => cf.FaseId == 1); // soma o total de cliente em atendimento
             ClientInVisits = _context.ClientFases.Count(cf => cf.FaseId == 2); // soma o total de cliente em visita
             ClientInProposals = _context.ClientFases.Count(cf => cf.FaseId == 3); // soma o total de cliente em proposta

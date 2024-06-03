@@ -11,10 +11,12 @@ namespace ImobSystem.Pages
     {
         private readonly ApplicationDbContext _context;
 
-        public VisitModel (ApplicationDbContext context)
+        public VisitModel(ApplicationDbContext context)
         {
             _context = context;
         }
+         [BindProperty] 
+        public VisitHouse Visit { get; set; }
 
         public List<House> Houses { get; set; } // Lista de serviços de clientes
         public List<Owner> Owner { get; set; } // Lista de Proprietários
@@ -31,7 +33,14 @@ namespace ImobSystem.Pages
             ClientFases = _context.ClientFases.ToList(); // Atualiza a lista de fases de atendimento puxando do banco de dados
             return Page();
         }
+        public IActionResult OnPost()
+{
+    if (!ModelState.IsValid)
+    {
+        return Page();
+    }
 
+<<<<<<< Updated upstream
 
         public async Task<IActionResult> OnPostAdicionarPropostaAsync(int clientId, int houseId, DateTime dataProposta, decimal valorProposta, decimal valorContraProposta)
         {
@@ -81,5 +90,25 @@ namespace ImobSystem.Pages
             }
         }
         
+=======
+    // Adiciona a visita do cliente ao contexto do banco de dados
+    _context.VisitHouses.Add(Visit);
+    _context.SaveChanges();
+
+    // Cria um novo registro em ClientFase para o cliente e a fase de atendimento
+    var clientFase = new ClientFase
+    {
+         ClientId = Visit.ClientId, // Define o Id do cliente
+         FaseId = 2 // Define o Id da fase de atendimento (assumindo que 2 é o Id da fase de visita)
+    };
+
+    _context.ClientFases.Add(clientFase); // Adiciona o novo registro ao contexto
+    _context.SaveChanges(); // Salva as alterações
+
+    // Redireciona para a página de Visit
+    return RedirectToPage("./Visit");
+       }
+>>>>>>> Stashed changes
     }
 }
+

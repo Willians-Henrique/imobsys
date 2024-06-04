@@ -36,7 +36,7 @@
                                     <td>@visit.Client.Nome</td>
                                     <td>@visit.Client.ValorImovel.ToString("C2")</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#novaPropostaModal-@visit.Client.Id">Adicionar Proposta</button>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#novaPropostaModal-@visit.Client.Id">Proposta</button>
                                         <form method="post" asp-page-handler="DeleteVisit" asp-route-id="@visit.Client.Id" onsubmit="return confirm('Tem certeza que deseja encerrar este atendimento?')">
                                             <button type="submit" class="btn btn-danger">EXCLUIR</button>
                                         </form>

@@ -40,7 +40,7 @@
                                     <td>@service.Client.ValorImovel.ToString("C2")</td>
                                     <td>@service.Client.Origin</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#visitaModal-@service.Client.Id">VISITA</button>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#visitaModal-@service.Client.Id">VISITAR</button>
                                         <form method="post" asp-page-handler="Delete" asp-route-id="@service.Client.Id">
                                             <button type="submit" class="btn btn-danger" onclick="return confirm ('Tem certeza que deseja encerar esse atendimento ?')">EXCLUIR</button>
                                         </form> 

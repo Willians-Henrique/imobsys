@@ -40,9 +40,9 @@
                                     <td>@proposal.House.Owner.Nome</td>
                                     <td>@proposal.ValorContraProposal.ToString("C2")</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#novaFormalizacaoModal-@proposal.Client.Id">Aceitar</button>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#novaFormalizacaoModal-@proposal.Client.Id">ACEITAR</button>
                                         <form method="post" asp-page-handler="DeleteProposal" asp-route-id="@proposal.Client.Id" onsubmit="return confirm('Tem certeza que deseja encerrar este atendimento?')">
-                                            <button type="submit" class="btn btn-danger">EXCLUIR</button>
+                                            <button type="submit" class="btn btn-danger">RECUSAR</button>
                                         </form>
                                     </td>
                                 </tr>

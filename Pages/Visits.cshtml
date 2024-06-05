@@ -19,7 +19,7 @@
                         <th>Valor do Imóvel</th>
                         <th>Client</th>
                         <th>Valor do Cliente</th>
-                        <th><a href="#" id="openNovaVisitaModal" data-bs-toggle="modal" data-bs-target="#novaVisitaModal">Nova Visita</a></th>
+                        <th>[Ação] </th>
                     </tr> 
                 </thead>
                 <tbody>
@@ -27,7 +27,6 @@
                     {
                         foreach (var visit in Model.VisitHouses)
                         {
-<<<<<<< Updated upstream
                             if (visit.Client.ClientFases.Any(cf => cf.FaseId == 2))
                             {    
                                 <tr> 
@@ -45,66 +44,20 @@
 
                                 </tr>
                             }    
-=======
-                            if (visit.Client.ClientFases.Any(cf => cf.FaseId == 2)) 
-                            {
-                            <tr>
-                                <td>@visit.Data.ToString("dd/MM/yyyy")</td>
-                                <td>@visit.House.FullAddress</td>
-                                <td>@visit.House.ValorImovel.ToString("C2")</td>
-                                <td>@visit.Client.Nome</td>
-                                <td>@visit.Client.ValorImovel.ToString("C2")</td>
-                                <td>[ALTERAR] [EXCLUIR]</td>
-                            </tr>
->>>>>>> Stashed changes
                         }
                     }
-                    } 
-                    
+                    else
+                    {
+                        <tr>
+                            <td colspan="6">Nenhum dado de visita encontrado.</td>
+                        </tr>
+                    }
                 </tbody>
             </table>
-        </div>
-    </div><!-- Modal -->
-<div class="modal fade" id="novaVisitaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Nova Visita</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeNovaVisitaModal"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post">
-                    <div class="mb-3">
-                        <label for="data" class="form-label">Data:</label>
-                        <input type="date" class="form-control" id="data" name="Client.Data" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="endereço" class="form-label">Endereço:</label>
-                        <input type="text" class="form-control" id="endereço" name="Client.Endereço" required> 
-                    </div>
-                    <div class="mb-3">
-                        <label for="valorImovel" class="form-label">Valor do Imóvel:</label>
-                        <input type="text" class="form-control" id="valorImovel" name="Client.ValorImovel" required oninput="formatCurrency(this)">
-                    </div>
-                    <div class="mb-3">
-                        <label for="Origin" class="form-label">Cliente:</label>
-                        <input type="text" class="form-control" id="cliente" name="Client.Cliente" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="valorCliente" class="form-label">Valor do Cliente:</label>
-                        <input type="text" class="form-control" id="valorCliente" name="Client.ValorCliente" required oninput="formatCurrency(this)">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                    </div>
-                </form>
-            </div>
         </div>
     </div>
 </div>
 
-<<<<<<< Updated upstream
 @foreach (var visit in Model.VisitHouses)
 {
     <!-- Modal de nova proposta -->
@@ -139,6 +92,3 @@
         </div>
     </div>
 }
-=======
-</div>
->>>>>>> Stashed changes

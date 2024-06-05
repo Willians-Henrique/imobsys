@@ -67,12 +67,12 @@
             <div class="modal-body">
                 <form method="post">
                     <div class="mb-3">
-                        <label for="nome" class="form-label">Nome:</label>
-                        <input type="text" class="form-control" id="nome" name="Client.Nome" required>
+                        <label for="data" class="form-label">Data:</label>
+                        <input type="date" class="form-control" id="data" name="Data" required> 
                     </div>
                     <div class="mb-3">
-                        <label for="data" class="form-label">Data:</label>
-                        <input type="date" class="form-control" id="data" name="Client.Data" required> 
+                        <label for="nome" class="form-label">Nome:</label>
+                        <input type="text" class="form-control" id="nome" name="Client.Nome" required>
                     </div>
                     <div class="mb-3">
                         <label for="telefone" class="form-label">Telefone:</label>
@@ -117,8 +117,8 @@
                 <div class="modal-body">
                     <form method="post" asp-page-handler="NovaVisita">
                         <input type="hidden" name="ClientId" value="@service.Client.Id" />
-                        <div id="visitFormContainer-@service.Client.Id">
-                            <div class="visit-form">
+                       <!-- <div id="visitFormContainer-@service.Client.Id"> -->
+                           <!-- <div class="visit-form"> -->
                                 <div class="mb-3">
                                     <label for="dataVisita-@service.Client.Id" class="form-label">Data da Visita:</label>
                                     <input type="date" class="form-control" id="dataVisita-@service.Client.Id" name="VisitHouses[0].Data" required>
@@ -133,12 +133,12 @@
                                         }
                                     </select>
                                 </div>
-                            </div>
-                        </div>
+                            <!-- </div> -->
+                        <!--</div> -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            <button type="submit" class="btn btn-primary">Salvar Visitas</button>
-                            <button type="button" class="btn btn-success" onclick="addVisitForm(@service.Client.Id)">Adicionar Outra Visita</button>
+                            <button type="submit" class="btn btn-primary">Salvar Visita</button>
+                            <!-- <button type="button" class="btn btn-success" onclick="addVisitForm(@service.Client.Id)">Adicionar Outra Visita</button> -->
                         </div>
                     </form>
                 </div>
@@ -146,7 +146,7 @@
         </div>
     </div>
 }
-
+<!-- 
 <script>
     function addVisitForm(clientId) {
         const container = document.getElementById('visitFormContainer-' + clientId);
@@ -171,4 +171,4 @@
         `;
         container.appendChild(newForm);
     }
-</script>
+</script> -->

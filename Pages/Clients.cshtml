@@ -10,81 +10,155 @@
     }
 </style>
 
-<div class="container-fluid" style= "background-color: #f5fafa;">
-    <div class="row">
-        <div class="col-12">
-            <div class="container pb-4">
-                <div class="row">
-                    <div class="col-md-3 text-center pb-4">
-                        <a asp-page ="/ClientServices" style="text-decoration: none; color: inherit;">
-                            <img src="~/images/services.png" asp-append-version="true" alt="Imagem 1" style="width: 100px; height: 100px;">
-                             <h4>@Model.ClientInServices</h4>
-                            <h3>Atendimento</h3>
-                        </a>
+<div class="container-fluid">
+    <section>
+        <h1>Acompanhamentos</h1>
+        <hr>
+        <div class="container pb-4">
+            <div class="row d-flex flex-row justify-content-center align-items-center">
+                <!-- Atendimento -->
+                <div class="text-center position-relative rounded-3 border m-4 p-4" style="height: 250px; width: 250px; background-color: #e4f2f2">
+                    <!-- Bubble -->
+                    <div class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-pill p-2" style="background-color: #d4e9e9">
+                        <h4 style="color: #1C1C1C" >@Model.ClientInServices</h4>
                     </div>
-                    <div class="col-md-3 text-center pb-4">
-                        <a asp-page="/Visits" style="text-decoration: none; color: inherit;">
-                            <img src="~/images/visits.png" asp-append-version="true" alt="Imagem 2" style="width: 100px; height: 100px;">
-                            <h4>@Model.ClientInVisits</h4>
-                            <h3>Visita</h3>
-                        </a>
-                    </div>
-                    <div class="col-md-3 text-center pb-4">
-                        <a asp-page ="/Proposal" style="text-decoration: none; color: inherit;">
-                            <img src="~/images/proposals.png" asp-append-version="true" alt="Imagem 3" style="width: 100px; height: 100px;">
-                            <h4>@Model.ClientInProposals</h4>
-                            <h3>Proposta</h3>
-                        </a>
-                    </div>
-                    <div class="col-md-3 text-center pb-4">
-                        <a asp-page ="/Formalizations" style="text-decoration: none; color: inherit;">
-                            <img src="~/images/formalizations.png" asp-append-version="true" alt="Imagem 4" style="width: 100px; height: 100px;">
-                            <h4>@Model.ClientInFormalizations</h4>
-                            <h3>Formalização</h3>
+                    <!-- Icon and Text -->
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <a asp-page="/ClientServices" style="text-decoration: none; color: inherit;">
+                            <img src="~/images/services.png" asp-append-version="true" alt="Proprietários" class="img-fluid mb-4" style="max-height: 96px;">
+                            <h2>Atendimento</h2>
                         </a>
                     </div>
                 </div>
-            </div>
-
-            <div class="container mt-4">
-                <div class="row justify-content-around">
-                    <div class="col-md-3 text-center pb-4 custom-col">
-                        <a asp-page="/Owners" style="text-decoration: none; color: inherit;">
-                            <img src="~/images/owner.png" asp-append-version="true" alt="Imagem 5" class="img-fluid" style="max-width: 50px; max-height: 50px;">
-                            <h4>@Model.TotalOwners</h4>
-                            <h3>Proprietários</h3>
+                <!-- Visita -->
+                <div class="text-center position-relative rounded-3 border m-4 p-4" style="height: 250px; width: 250px; background-color: #e4f2f2">
+                    <!-- Bubble -->
+                    <div class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-pill p-2" style="background-color: #d4e9e9">
+                        <h4 style="color: #1C1C1C" >@Model.ClientInVisits</h4>
+                    </div>
+                    <!-- Icon and Text -->
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <a asp-page="/Visits" style="text-decoration: none; color: inherit;">
+                            <img src="~/images/visits.png" asp-append-version="true" alt="Proprietários" class="img-fluid mb-4" style="max-height: 96px;">
+                            <h2>Visitas</h2>
                         </a>
                     </div>
-                    <div class="col-md-3 text-center pb-4 custom-col">
-                        <a asp-page="/Houses" style="text-decoration: none; color: inherit;">
-                            <img src="~/images/houses.png" asp-append-version="true" alt="Imagem 5" class="img-fluid" style="max-width: 50px; max-height: 50px;">
-                            <h4>@Model.TotalHouses</h4>
-                            <h3>Casas</h3>
+                </div>
+                <!-- Proposta -->
+                <div class="text-center position-relative rounded-3 border m-4 p-4" style="height: 250px; width: 250px; background-color: #e4f2f2">
+                    <!-- Bubble -->
+                    <div class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-pill p-2" style="background-color: #d4e9e9">
+                        <h4 style="color: #1C1C1C" >@Model.ClientInProposals</h4>
+                    </div>
+                    <!-- Icon and Text -->
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <a asp-page="/Proposal" style="text-decoration: none; color: inherit;">
+                            <img src="~/images/proposals.png" asp-append-version="true" alt="Proprietários" class="img-fluid mb-4" style="max-height: 96px;">
+                            <h2>Propostas</h2>
                         </a>
                     </div>
-                    <div class="col-md-3 text-center pb-4 custom-col">    
-                        <a asp-page="/LeadsTotal" style="text-decoration: none; color: inherit;">
-                            <img src="~/images/leads.png" asp-append-version="true" alt="Imagem 5" class="img-fluid" style="max-width: 50px; max-height: 50px;">
-                            <h4>@Model.TotalClientServices</h4>
-                            <h3>Leads Totais</h3>
-                        </a>
+                </div>
+                <!-- Formalização -->
+                <div class="text-center position-relative rounded-3 border m-4 p-4" style="height: 250px; width: 250px; background-color: #e4f2f2">
+                    <!-- Bubble -->
+                    <div class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-pill p-2" style="background-color: #d4e9e9">
+                        <h4 style="color: #1C1C1C" >@Model.ClientInFormalizations</h4>
                     </div>
-                    <div class="col-md-3 text-center pb-4 custom-col">
-                        <a asp-page="/TotalBusiness" style="text-decoration: none; color: inherit;">
-                            <img src="~/images/formalizations.png" asp-append-version="true" alt="Imagem 8" class="img-fluid" style="max-width: 50px; max-height: 50px;">
-                            <h4>@Model.ClientInBusiness</h4>
-                            <h3>Fechamentos Totais</h3>
-                        </a>
-                    </div>
-                    <div class="col-md-3 text-center pb-4 custom-col">
-                        <a asp-page="/NotBusiness" style="text-decoration: none; color: inherit;">
-                            <img src="~/images/trash.png" asp-append-version="true" alt="Imagem 10" class="img-fluid" style="max-width: 50px; max-height: 50px;">
-                            <h4>@Model.ClientNotBusiness</h4>
-                            <h3>Leads Infrutíferos</h3>
+                    <!-- Icon and Text -->
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <a asp-page="/Formalizations" style="text-decoration: none; color: inherit;">
+                            <img src="~/images/formalizations.png" asp-append-version="true" alt="Proprietários" class="img-fluid mb-4" style="max-height: 96px;">
+                            <h2>Formalização</h2>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    <section>
+        <h1>Clientes e Imóveis</h1>
+        <hr>
+        <div class="container pb-4">
+            <!-- Proprietários -->
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-6 text-center position-relative rounded-3 border m-4 p-4" style="height: 275px; width: 275px; background-color: #e4f2f2">
+                    <!-- Bubble -->
+                    <div class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-pill p-2" style="background-color: #d4e9e9">
+                        <h4 style="color: #1C1C1C" >@Model.TotalOwners</h4>
+                    </div>
+                    <!-- Icon and Text -->
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <a asp-page="/Owners" style="text-decoration: none; color: inherit;">
+                            <img src="~/images/owner.png" asp-append-version="true" alt="Proprietários" class="img-fluid mb-4" style="max-height: 128px;">
+                            <h2>Proprietários</h2>
+                        </a>
+                    </div>
+                </div>
+                <!-- Casas -->
+                <div class="col-lg-6 text-center position-relative rounded-3 border m-4 p-4" style="height: 275px; width: 275px; background-color: #e4f2f2">
+                    <!-- Bubble -->
+                    <div class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-pill p-2" style="background-color: #d4e9e9">
+                        <h4 style="color: #1C1C1C" >@Model.TotalHouses</h4>
+                    </div>
+                    <!-- Icon and Text -->
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <a asp-page="/Houses" style="text-decoration: none; color: inherit;">
+                            <img src="~/images/houses.png" asp-append-version="true" alt="Casas" class="img-fluid mb-4" style="max-height: 128px;">
+                            <h2>Casas</h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h1>Leads</h1>
+        <hr>
+        <div class="container pb-4">
+            <div class="row justify-content-center align-items-center">
+                <!-- Leads Infrutíferos -->
+                <div class="col-lg-6 text-center position-relative rounded-3 border m-4 p-4" style="height: 275px; width: 275px; background-color: #e4f2f2">
+                    <!-- Bubble -->
+                    <div class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-pill p-2" style="background-color: #d4e9e9">
+                        <h4 style="color: #1C1C1C" >@Model.ClientNotBusiness</h4>
+                    </div>
+                    <!-- Icon and Text -->
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <a asp-page="/NotBusiness" style="text-decoration: none; color: inherit;">
+                            <img src="~/images/trash.png" asp-append-version="true" alt="Proprietários" class="img-fluid mb-4" style="max-height: 128px;">
+                            <h2>Leads Infrutíferos</h2>
+                        </a>
+                    </div>
+                </div>
+                <!-- Leads Totais -->
+                <div class="col-lg-6 text-center position-relative rounded-3 border m-4 p-4" style="height: 275px; width: 275px; background-color: #e4f2f2">
+                    <!-- Bubble -->
+                    <div class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-pill p-2" style="background-color: #d4e9e9">
+                        <h4 style="color: #1C1C1C" >@Model.TotalClientServices</h4>
+                    </div>
+                    <!-- Icon and Text -->
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <a asp-page="/LeadsTotal" style="text-decoration: none; color: inherit;">
+                            <img src="~/images/leads.png" asp-append-version="true" alt="Casas" class="img-fluid mb-4" style="max-height: 128px;">
+                            <h2>Leads Totais</h2>
+                        </a>
+                    </div>
+                </div>
+                <!-- Fechamentos Totais -->
+                <div class="col-lg-6 text-center position-relative rounded-3 border m-4 p-4" style="height: 275px; width: 275px; background-color: #e4f2f2">
+                    <!-- Bubble -->
+                    <div class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-pill p-2" style="background-color: #d4e9e9">
+                        <h4 style="color: #1C1C1C" >@Model.ClientInBusiness</h4>
+                    </div>
+                    <!-- Icon and Text -->
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <a asp-page="/TotalBusiness" style="text-decoration: none; color: inherit;">
+                            <img src="~/images/formalizations.png" asp-append-version="true" alt="Casas" class="img-fluid mb-4" style="max-height: 128px;">
+                            <h2>Fechamentos Totais</h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
